@@ -1,0 +1,26 @@
+<!-- dashboard.component.html -->
+
+<div class="dashboard-container">
+    <h2>Application Dashboard</h2>
+  
+    <!-- Add and Edit Application Form -->
+    <app-application-form (addApplication)="addApplication($event)"></app-application-form>
+  
+    <!-- List Applications -->
+    <app-application-list
+      [applications]="applications"
+      [selectedApplications]="selectedApplications"
+      (updateApplication)="updateApplication($event)"
+      (deleteApplication)="deleteApplication($event)"
+      (toggleSelectAll)="toggleSelectAll()">
+    </app-application-list>
+  
+    <!-- Multiple Select and Download -->
+    <button (click)="downloadExcel()">Download Selected as Excel</button>
+  
+    <!-- Individual Application Download -->
+    <button *ngFor="let application of applications" (click)="downloadPdf(application.id)">
+      Download {{ application.name }} as PDF
+    </button>
+  </div>
+  
